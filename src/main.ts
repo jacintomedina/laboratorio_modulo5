@@ -1,53 +1,56 @@
-const estiloNombre = "font-weight:bold; font-size:14px; color:green";
+let turnoActual: number = 0;
+const numeroPrincipal = document.getElementById("numero-turno");
+const atras = document.getElementById("atras");
+const adelante = document.getElementById("adelante");
+const reset = document.getElementById("reset");
 
-interface Grupo {
-    nombre: string;
-    añoNacimiento: number;
-    activo: boolean;
-    genero: string;
+let numeroManual = document.getElementById("cambio-manual") as HTMLInputElement;
+const btnAsignar = document.getElementById("btn-asignar");
+
+function actualizarNumeroPrincipal(): void {
+  if (numeroPrincipal !== null && numeroPrincipal !== undefined) {
+    numeroPrincipal.textContent = turnoActual.toString().padStart(2, "0");
+  }
+}
+
+const anterior = () => {
+  turnoActual = turnoActual - 1;
+  if (turnoActual < 0) {
+    turnoActual = 0;
+  }
+  actualizarNumeroPrincipal();
 };
 
-const grupoA : Grupo = {
-    nombre: "%cThe Beatles",
-    añoNacimiento: 1960,
-    activo: true,
-    genero: "🎵 Pop Rock",
+const siguiente = () => {
+  turnoActual = turnoActual + 1;
+  actualizarNumeroPrincipal();
 };
 
-const grupoB : Grupo = {
-    nombre: "%cQueen",
-    añoNacimiento: 1970,
-    activo: false,
-    genero: "🎸 Rock",
+const resetTurno = () => {
+  turnoActual = turnoActual = 0;
+  actualizarNumeroPrincipal();
 };
 
-const grupoC : Grupo = {
-    nombre: "%cAC DC",
-    añoNacimiento: 1973,
-    activo: true,
-    genero:"🤘 Hard Rock",
-};
+if (atras !== null && atras !== undefined) {
+  atras.addEventListener("click", anterior);
+}
 
-const grupoD : Grupo = {
-    nombre: "%cLudwig van Beethoven",
-    añoNacimiento: 1770,
-    activo: false,
-    genero: "🎼 Clásica",
-};
+if (adelante !== null && adelante !== undefined) {
+  adelante.addEventListener("click", siguiente);
+}
 
-const grupoE : Grupo = {
-    nombre: "%cThe Rolling Stones",
-    añoNacimiento: 1962,
-    activo: true,
-    genero: "🎸 Rock",
-};
+if (reset !== null && reset !== undefined) {
+  reset.addEventListener("click", resetTurno);
+}
 
-console.log(grupoA.nombre, estiloNombre, grupoA.añoNacimiento, grupoA.activo, grupoA.genero);
+function cambiarNumeroManual(): void {
+  if (numeroManual !== null && numeroManual !== undefined) {
+    numeroManual = turnoActual;
+  }
+}
 
-console.log(grupoB.nombre, estiloNombre, grupoB.añoNacimiento, grupoB.activo, grupoB.genero);
+if (btnAsignar !== null && btnAsignar !== undefined) {
+  btnAsignar.addEventListener("click", cambiarNumeroManual());
+}
 
-console.log(grupoC.nombre, estiloNombre, grupoC.añoNacimiento, grupoC.activo, grupoC.genero);
-
-console.log(grupoD.nombre, estiloNombre, grupoD.añoNacimiento, grupoD.activo, grupoD.genero);
-
-console.log(grupoE.nombre, estiloNombre, grupoE.añoNacimiento, grupoE.activo, grupoE.genero);
+actualizarNumeroPrincipal();
