@@ -1,93 +1,63 @@
-.turno-display {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 2rem;
+  font-family: "Poppins";
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  align-items: center;
 }
 
-.numero-turno {
-  font-size: 6rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.texto-turno {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
+#puntuacion {
   text-align: center;
+  margin-bottom: 1rem;
+  font-size: 3rem;
 }
 
-.botones {
+.carta-container {
   display: flex;
   justify-content: center;
+}
+
+.panel-botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
+  margin: 1rem 0;
+}
+
+.boton {
+  display: flex;
+  padding: 1rem;
+  background-color: tomato;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.boton:disabled {
+  background-color: #909090;
+}
+
+#mensaje-juego {
+  text-align: center;
+  font-size: 2rem;
+}
+
+#btnNuevaPartida {
+  margin: 0 auto;
   margin-top: 2rem;
 }
 
-.control-turno {
-  width: 40px;
-  height: 40px;
-  background-color: #000;
-  color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-#reset {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.cambio-manual-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 1rem;
-}
-
-#cambio-manual {
-  width: 150px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-#btn-asignar {
-  background-color: #000;
-  color: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: auto 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  font-weight: bold;
+.oculto {
+  display: none;
 }
