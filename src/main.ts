@@ -127,12 +127,12 @@ const btnMePlanto = document.getElementById("btnMePlanto");
 const btnNuevaPartida = document.getElementById("btnNuevaPartida");
 
 const resetearPartida = (): void => {
-  puntuacionUsuario = 0;
+  actualizarPuntuacionUsuario(0);
   muestraPuntuacion();
-  if (cartaVisible instanceof HTMLImageElement) {
-    cartaVisible.src =
-      "https://github.com/Lemoncode/fotos-ejemplos/blob/main/cartas/back.jpg?raw=true";
-  }
+  mostrarUrlCarta(
+    "https://github.com/Lemoncode/fotos-ejemplos/blob/main/cartas/back.jpg?raw=true"
+  );
+
   if (mensaje) {
     mensaje.innerHTML = "";
   }
@@ -142,6 +142,7 @@ const resetearPartida = (): void => {
   if (btnMePlanto instanceof HTMLButtonElement) {
     btnMePlanto.disabled = false;
   }
+
   if (btnNuevaPartida) {
     btnNuevaPartida.classList.add("oculto");
   }
@@ -151,6 +152,18 @@ if (btnNuevaPartida) {
   btnNuevaPartida.addEventListener("click", resetearPartida);
 }
 
+const deshabilitarMeplanto = (mePlantoDeshabilitado: boolean): void => {
+  if (btnMePlanto instanceof HTMLButtonElement) {
+    btnMePlanto.disabled = mePlantoDeshabilitado;
+  }
+};
+
+const deshabilitarDameCarta = (dameCartaDeshabilitado: boolean): void => {
+  if (btnDameCarta instanceof HTMLButtonElement) {
+    btnDameCarta.disabled = dameCartaDeshabilitado;
+  }
+};
+
 const finalizarPartida = (): void => {
   if (mensaje) {
     mensaje.innerHTML = obtenerMensaje();
@@ -158,12 +171,8 @@ const finalizarPartida = (): void => {
   if (btnNuevaPartida) {
     btnNuevaPartida.classList.remove("oculto");
   }
-  if (btnMePlanto instanceof HTMLButtonElement) {
-    btnMePlanto.disabled = true;
-  }
-  if (btnDameCarta instanceof HTMLButtonElement) {
-    btnDameCarta.disabled = true;
-  }
+  deshabilitarMeplanto(true);
+  deshabilitarDameCarta(true);
 };
 
 const obtenerMensaje = (): string => {
@@ -194,9 +203,7 @@ if (
   mensaje instanceof HTMLDivElement
 ) {
   btnMePlanto.addEventListener("click", () => {
-    if (puntuacionUsuario > 7.5) {
-      btnMePlanto.disabled = true;
-    }
+    deshabilitarMeplanto(true);
     const mensaje = obtenerMensaje();
     mostrarMensaje(mensaje);
     finalizarPartida();
